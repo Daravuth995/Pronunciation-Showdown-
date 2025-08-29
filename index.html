@@ -981,10 +981,11 @@
 
                 if (result.success) {
                     showGlassConfirmation(points, studentName);
+                    createConfetti();
                     addToLatestEarners(studentName, points);
                     
-                    scoreSound.currentTime = 0;
-                    scoreSound.play();
+                    achievementSound.currentTime = 0;
+                    achievementSound.play();
                 } else {
                     showGlassConfirmation(0, result.message || 'Failed to grant points');
                 }
@@ -1250,8 +1251,8 @@
             totalScoreDisplay.textContent = totalScore;
             lastScoreDisplay.textContent = `+${points}`;
             
-            // Grant points to student
-            grantPointsToStudent(currentStudent.id, points, currentStudent.name);
+            // Grant points to student - FIXED: Use studentid instead of id
+            grantPointsToStudent(currentStudent.studentid, points, currentStudent.name);
             
             // Reset orb appearance
             setTimeout(() => {
